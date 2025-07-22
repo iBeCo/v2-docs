@@ -32,17 +32,6 @@ const config: Config = {
     locales: ['en'],
   },
 
-  plugins: [
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-XXXXXXXXXX', // ✅ Replace with your real GA4 ID
-        anonymizeIP: true,
-      },
-    ],
-  ],
-  
-  
   presets: [
     [
       'classic',
@@ -59,6 +48,16 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
+    ],
+  ],
+  
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-XXXXXXXXXX', // ✅ Replace with your real GA4 ID
+        anonymizeIP: true,
+      },
     ],
   ],
 
