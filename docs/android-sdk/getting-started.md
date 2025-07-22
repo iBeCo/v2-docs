@@ -1,69 +1,48 @@
-# Getting Started with Android SDK
+---
+sidebar_position: 3
+---
 
-Welcome to the Becomap Android SDK! This guide will help you integrate indoor navigation and mapping features into your Android applications.
+# Getting Started
 
-## Prerequisites
+Learn how to initialize the Beco Android SDK and create your first indoor map.
 
-- Android Studio 4.0 or higher
-- Android API level 21 (Android 5.0) or higher
-- A Becomap account and API key
+## SDK Initialization
 
-## Installation
-
-### Step 1: Add the dependency
-
-Add the following to your `app/build.gradle` file:
-
-```gradle
-dependencies {
-    implementation 'com.becomap:android-sdk:1.0.0'
-}
-```
-
-### Step 2: Initialize the SDK
-
-In your `Application` class or main activity:
+Initialize the Beco SDK in your Application class or main Activity:
 
 ```kotlin
-import com.becomap.BecomapSDK
-
-class MyApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        BecomapSDK.initialize(this, "YOUR_API_KEY")
-    }
-}
-```
-
-### Step 3: Add permissions
-
-Add the following permissions to your `AndroidManifest.xml`:
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-```
-
-## Basic Usage
-
-### Displaying a Map
-
-```kotlin
-import com.becomap.BecomapView
+import com.beco.BecoSDK
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         
-        val mapView = findViewById<BecomapView>(R.id.map_view)
-        mapView.loadVenue("YOUR_VENUE_ID")
+        // Initialize Beco SDK
+        BecoSDK.initialize(this, "YOUR_API_KEY")
     }
 }
 ```
 
+## Basic Map Setup
+
+Add a map view to your layout:
+
+```xml
+<com.beco.BecoMapView
+    android:id="@+id/map_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+
+## Load Your First Map
+
+```kotlin
+val mapView = findViewById<BecoMapView>(R.id.map_view)
+mapView.loadMap("your-venue-id")
+```
+
 ## Next Steps
 
-- [Installation Guide](./installation)
-- [Map Configuration](./map-configuration) 
+- Learn about map configuration options
+- Explore navigation features
+- Customize the map appearance
