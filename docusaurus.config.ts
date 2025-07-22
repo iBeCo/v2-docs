@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'BeCo Map',
-  tagline: 'Dinosaurs are cool',
+  title: 'Indoor navigation, wayfinding, and Mapping solution | Becomap',
+  tagline: 'Indoor Navigation & Asset Tracking',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -57,12 +57,11 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'https://becomap.com/becomap.png',
     navbar: {
-      title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Beco Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
