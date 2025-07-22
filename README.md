@@ -24,6 +24,17 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+## Build and Serve Production
+
+Run this in your project root:
+
+```bash
+yarn build
+yarn serve
+```
+
+This will build the production version of your site and serve it locally for testing.
+
 ## Deployment
 
 Using SSH:

@@ -32,6 +32,17 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-XXXXXXXXXX', // ✅ Replace with your real GA4 ID
+        anonymizeIP: true,
+      },
+    ],
+  ],
+  
+  
   presets: [
     [
       'classic',
@@ -81,8 +92,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Overview',
+              to: '/docs/overview',
             },
           ],
         },
@@ -91,27 +102,27 @@ const config: Config = {
           items: [
             {
               label: 'Indoor Navigation',
-              href: '/solutions/indoor-mapping/',
+              href: 'https://becomap.com/solutions/indoor-mapping/',
             },
             {
               label: 'Asset Tracking',
-              href: '/solutions/asset-tracking/',
+              href: 'https://becomap.com/solutions/asset-tracking/',
             },
             {
               label: 'Proximity Services',
-              href: '/solutions/proximity-services/',
+              href: 'https://becomap.com/solutions/proximity-services/',
             },
             {
               label: 'Analytics',
-              href: '/solutions/analytics/',
+              href: 'https://becomap.com/solutions/analytics/',
             },
             {
               label: 'Kiosk',
-              href: '/solutions/kiosk/',
+              href: 'https://becomap.com/solutions/kiosk/',
             },
             {
               label: 'Web App',
-              href: '/solutions/web-app/',
+              href: 'https://becomap.com/solutions/web-app/',
             },
           ],
         },
