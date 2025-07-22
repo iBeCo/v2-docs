@@ -148,6 +148,75 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  headTags: [
+    // Google Site Verification
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'google-site-verification',
+        content: '15qFVqhUkTNXJT7C35hrc4NXO5gZmlMdsNUU296HOVA',
+      },
+    },
+    // Description meta tag
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'description',
+        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
+      },
+    },
+    // Open Graph meta tags
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:title',
+        content: 'Indoor navigation, wayfinding, and Mapping  solution | Becomap',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:description',
+        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:image',
+        content: 'https://becomap.com/becomap.png',
+      },
+    },
+    // Twitter Card meta tags
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:title',
+        content: 'Indoor navigation, wayfinding, and Mapping  solution | Becomap',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:description',
+        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:image',
+        content: 'https://becomap.com/becomap.png',
+      },
+    },
+  ],
 };
 
 export default config;
