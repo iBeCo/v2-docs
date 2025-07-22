@@ -55,6 +55,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'tutorial-extras/manage-docs-versions',
         'tutorial-extras/translate-your-site',
+        'tutorial-extras/advanced-features-demo',
       ],
     },
   ],

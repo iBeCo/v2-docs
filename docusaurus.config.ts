@@ -1,4 +1,5 @@
 import {themes as prismThemes} from 'prism-react-renderer';
+import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -45,6 +46,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          remarkPlugins: [[npm2yarn, {sync: true}]],
         },
 
         theme: {
@@ -64,9 +66,21 @@ const config: Config = {
     ],
   ],
 
+  themes: ['@docusaurus/theme-live-codeblock'],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'https://becomap.com/becomap.png',
+    liveCodeBlock: {
+      playgroundPosition: 'bottom',
+    },
+    announcementBar: {
+      id: 'announcementBar-beco-v1',
+      content: '🎉️ **Beco Android SDK v1.0 is now available!** Check out the [Getting Started guide](/docs/android-sdk/getting-started) 🚀',
+      backgroundColor: '#25c2a0',
+      textColor: '#fff',
+      isCloseable: true,
+    },
     navbar: {
       logo: {
         alt: 'Beco Logo',
@@ -159,6 +173,28 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: [
+        'java',
+        'kotlin',
+        'swift',
+        'bash',
+        'json',
+        'gradle',
+        'markup',
+        'yaml',
+        'properties',
+      ],
+      magicComments: [
+        {
+          className: 'theme-code-block-highlighted-line',
+          line: 'highlight-next-line',
+          block: {start: 'highlight-start', end: 'highlight-end'},
+        },
+        {
+          className: 'code-block-error-line',
+          line: 'This will error',
+        },
+      ],
     },
   } satisfies Preset.ThemeConfig,
   headTags: [
