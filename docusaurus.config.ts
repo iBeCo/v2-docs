@@ -76,7 +76,7 @@ const config: Config = {
     },
     announcementBar: {
       id: 'announcementBar-beco-v1',
-      content: '🎉️ **Beco Android SDK v1.0 is now available!** Check out the [Getting Started guide](/docs/android-sdk/getting-started) 🚀',
+      content: '🎉️ **Beco Android SDK v1.0 is now available!** Check out the <a href="/docs/android-sdk/getting-started">Getting Started guide</a> 🚀',
       backgroundColor: '#25c2a0',
       textColor: '#fff',
       isCloseable: true,
