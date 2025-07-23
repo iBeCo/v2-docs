@@ -71,6 +71,11 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'https://becomap.com/becomap.png',
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     liveCodeBlock: {
       playgroundPosition: 'bottom',
     },
