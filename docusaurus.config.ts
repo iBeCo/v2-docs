@@ -64,6 +64,7 @@ const config: Config = {
         anonymizeIP: true,
       },
     ],
+    "./src/plugins/tailwind-config.js",
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
