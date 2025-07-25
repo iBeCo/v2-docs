@@ -1,277 +1,229 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
+import { themes } from "prism-react-renderer";
+import npm2yarn from "@docusaurus/remark-plugin-npm2yarn";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// Code block themes
+const code_themes = {
+  light: themes.github,
+  dark: themes.dracula,
+};
+
+const meta = {
+  title: "Indoor navigation, wayfinding, and Mapping solution | Becomap",
+  tagline: "Indoor Navigation & Asset Tracking",
+  favicon: "img/favicon.ico",
+  url: "https://becomap.com",
+  baseUrl: "/",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+  },
+};
+
+// const docs = [
+//   {
+//     id: 'overview',
+//     path: 'docs/overview',
+//     routeBasePath: '/overview',
+//   },
+//   {
+//     id: 'becomap-js',
+//     path: 'docs/becomap-js',
+//     routeBasePath: '/becomap-js',
+//   },
+//   // Mobile Core
+//   {
+//     id: 'android-sdk',
+//     path: 'docs/android-sdk',
+//     routeBasePath: '/android-sdk',
+//   },
+//   {
+//     id: 'ios-sdk',
+//     path: 'docs/ios-sdk',
+//     routeBasePath: '/ios-sdk',
+//   },
+// ];
+
+const defaultSettings = {
+  breadcrumbs: true,
+  editUrl: "https://github.com/iBeCo/v2-docs",
+  sidebarCollapsible: true,
+  remarkPlugins: [[npm2yarn, { sync: true }]],
+  sidebarPath: "./sidebars.ts",
+};
+
+function create_doc_plugin({
+  sidebarPath = "./sidebars.ts",
+  ...options
+}: any): [string, any] {
+  return [
+    "@docusaurus/plugin-content-docs",
+    { ...defaultSettings, sidebarPath, ...options },
+  ];
+}
+
+const tailwindPlugin = "./src/plugins/tailwind-config.js";
+// const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
+
+// console.log(docs_plugins, 'docs_plugins');
+
+const plugins = [tailwindPlugin];
 
 const config: Config = {
-  title: 'Indoor navigation, wayfinding, and Mapping solution | Becomap',
-  tagline: 'Indoor Navigation & Asset Tracking',
-  favicon: 'img/favicon.ico',
-
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  ...meta,
+  plugins,
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
-
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
-
+  themes: ["@docusaurus/theme-live-codeblock"],
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          id: 'default',
-          path: 'docs',
-          routeBasePath: 'docs',
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          remarkPlugins: [[npm2yarn, {sync: true}]],
+          id: "default",
+          path: "docs",
+          routeBasePath: "docs",
+          sidebarPath: "./sidebars.ts",
         },
-
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
   ],
-  
-  plugins: [
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-XXXXXXXXXX', // ✅ Replace with your real GA4 ID
-        anonymizeIP: true,
-      },
-    ],
-    "./src/plugins/tailwind-config.js",
-  ],
-
-  themes: ['@docusaurus/theme-live-codeblock'],
-
   themeConfig: {
-    // Replace with your project's social card
-    image: 'https://becomap.com/becomap.png',
+    image: "https://becomap.com/becomap.png",
     colorMode: {
-      defaultMode: 'light',
-      disableSwitch: false,
-      respectPrefersColorScheme: true,
+      defaultMode: "light",
     },
     liveCodeBlock: {
-      playgroundPosition: 'bottom',
+      playgroundPosition: "bottom",
     },
     announcementBar: {
-      id: 'announcementBar-beco-v1',
-      content: '🎉️ **Beco Android SDK v1.0 is now available!** Check out the <a href="/docs/android-sdk/getting-started">Getting Started guide</a> 🚀',
-      backgroundColor: '#25c2a0',
-      textColor: '#fff',
+      id: "announcementBar-beco-v1",
+      content:
+        '🎉️ **Beco Android SDK v1.0 is now available!** Check out the <a href="/docs/android-sdk/getting-started">Getting Started guide</a> 🚀',
+      backgroundColor: "#25c2a0",
+      textColor: "#fff",
       isCloseable: true,
+    },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+        hideable: true,
+      },
     },
     navbar: {
       logo: {
-        alt: 'Beco Logo',
-        src: 'img/logo.png',
+        href: "/",
+        src: "/logo/light.svg",
+        srcDark: "/logo/dark.svg",
+        alt: "becomap Documentation | becomap Docs",
+        // height: '50px',
+        width: "157px",
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Docs",
         },
-        {href: 'https://becomap.com/blog', label: 'Blog', position: 'left'},
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "apiSidebar",
+        //   position: "left",
+        //   label: "API",
+        // },
         {
-          href: 'https://github.com/iBeCo/',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://becomap.com/blog/",
+          position: "left",
+          label: "Blog",
+          className: "!flex items-center gap-2",
+
+        },
+        {
+          type: "search",
+          position: "right",
+        },
+        {
+          label: "Book a demo",
+          href: "https://becomap.com/contact/",
+          position: "right",
+          className: "!flex items-center gap-2",
         },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Overview',
-              to: '/docs/overview',
-            },
-          ],
-        },
-        {
-          title: 'Solutions',
-          items: [
-            {
-              label: 'Indoor Navigation',
-              href: 'https://becomap.com/solutions/indoor-mapping/',
-            },
-            {
-              label: 'Asset Tracking',
-              href: 'https://becomap.com/solutions/asset-tracking/',
-            },
-            {
-              label: 'Proximity Services',
-              href: 'https://becomap.com/solutions/proximity-services/',
-            },
-            {
-              label: 'Analytics',
-              href: 'https://becomap.com/solutions/analytics/',
-            },
-            {
-              label: 'Kiosk',
-              href: 'https://becomap.com/solutions/kiosk/',
-            },
-            {
-              label: 'Web App',
-              href: 'https://becomap.com/solutions/web-app/',
-            },
-          ],
-        },
-        {
-          title: 'About Us',
-          items: [
-            {
-              label: 'Becomap.com',
-              href: 'https://becomap.com',
-            },
-            {
-              label: 'Company',
-              href: 'https://becomap.com/company',
-            },
-            {
-              label: 'Contact Us',
-              href: 'https://becomap.com/contact/',
-            },
-            {
-              label: 'Privacy Policy',
-              href: 'https://becomap.com/privacy-policy',
-            },
-            {
-              label: 'Terms of Service',
-              href: 'https://becomap.com/terms-of-service',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} GlobeCo technologies Pvt Ltd.`,
+        links: [
+          {
+            title: 'Docs',
+            items: [
+              { label: 'Overview', to: '/docs/overview' },
+              { label: 'Android SDK', to: '/docs/android-sdk' },
+              { label: 'iOS SDK', to: '/docs/ios-sdk' },
+              { label: 'becomap JS', to: '/docs/becomap-js' },
+              { label: 'Enterprise Apps', to: '/docs/enterprise-apps' },
+            ],
+          },
+          {
+            title: 'Demos',
+            items: [
+              { label: 'Showcase', to: '/demos/showcase' },
+              { label: 'Playground', to: '/demos/playground' },
+              { label: 'Mappedin Web Demos', to: '/demos/mappedin-web-demos' }
+            ],
+          },
+          {
+            title: 'Social',
+            items: [
+              { label: 'Community', to: '/social/community' },
+              { label: 'Blog', to: '/blog' }
+            ],
+          },
+          {
+            title: 'Company',
+            items: [
+              { label: 'becomap.com', to: 'https://becomap.com' },
+              { label: 'Pricing', to: 'https://becomap.com/pricing' },
+              { label: 'About Us', to: 'https://becomap.com/about-us' },
+              { label: 'Contact Us', to: 'https://becomap.com/contact-us' },
+              { label: 'Privacy Policy', to: 'https://becomap.com/privacy-policy' },
+              { label: 'Terms of Service', to: 'https://becomap.com/terms-of-service' }
+            ],
+          }
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} becomap, Inc.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: code_themes.light,
+      darkTheme: code_themes.dark,
       additionalLanguages: [
-        'java',
-        'kotlin',
-        'swift',
-        'bash',
-        'json',
-        'gradle',
-        'markup',
-        'yaml',
-        'properties',
+        "java",
+        "kotlin",
+        "swift",
+        "bash",
+        "json",
+        "gradle",
+        "markup",
+        "yaml",
+        "properties",
       ],
       magicComments: [
         {
-          className: 'theme-code-block-highlighted-line',
-          line: 'highlight-next-line',
-          block: {start: 'highlight-start', end: 'highlight-end'},
+          className: "theme-code-block-highlighted-line",
+          line: "highlight-next-line",
+          block: { start: "highlight-start", end: "highlight-end" },
         },
         {
-          className: 'code-block-error-line',
-          line: 'This will error',
+          className: "code-block-error-line",
+          line: "highlight-next-line-error",
         },
       ],
     },
   } satisfies Preset.ThemeConfig,
-  headTags: [
-    // Google Site Verification
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'google-site-verification',
-        content: '15qFVqhUkTNXJT7C35hrc4NXO5gZmlMdsNUU296HOVA',
-      },
-    },
-    // Description meta tag
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'description',
-        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
-      },
-    },
-    // Open Graph meta tags
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:title',
-        content: 'Indoor navigation, wayfinding, and Mapping  solution | Becomap',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:description',
-        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:image',
-        content: 'https://becomap.com/becomap.png',
-      },
-    },
-    // Twitter Card meta tags
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'twitter:title',
-        content: 'Indoor navigation, wayfinding, and Mapping  solution | Becomap',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'twitter:description',
-        content: 'Indoor navigation system to improve visitor experience and staff management with indoor mapping & indoor wayfinding.',
-      },
-    },
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'twitter:image',
-        content: 'https://becomap.com/becomap.png',
-      },
-    },
-  ],
 };
 
 export default config;
